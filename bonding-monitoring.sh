@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/drone.cfg
+source /home/pi/drone.cfg
 
 F_IPSIM1=ip_sim1
 F_IPSIM2=ip_sim2
@@ -57,11 +57,12 @@ do
 
 
         # 2.
-        sudo sed -e "s/ip_sim1/$NEW_IPSIM1/g" ./cfg/vpn0-bonding.template > ./cfg/vpn0-bonding-tmp1.conf
-        sudo sed -e "s/ip_sim2/$NEW_IPSIM2/g" ./cfg/vpn0-bonding-tmp1.conf > ./cfg/vpn0-bonding-tmp2.conf
-        sudo sed -e "s/remoteport1/$mlvpn_port1/g" ./cfg/vpn0-bonding-tmp2.conf > ./cfg/vpn0-bonding-tmp3.conf
-        sudo sed -e "s/remoteport2/$mlvpn_port2/g" ./cfg/vpn0-bonding-tmp3.conf > ./cfg/vpn0-bonding-tmp4.conf
-        mv ./cfg/vpn0-bonding-tmp4.conf ./cfg/vpn0-bonding.conf
+        sudo sed -e "s/§ip_sim1/$NEW_IPSIM1/g" ./cfg/vpn0-bonding.template > ./cfg/vpn0-bonding-tmp1.conf
+        sudo sed -e "s/§ip_sim2/$NEW_IPSIM2/g" ./cfg/vpn0-bonding-tmp1.conf > ./cfg/vpn0-bonding-tmp2.conf
+        sudo sed -e "s/§remoteport1/$mlvpn_port1/g" ./cfg/vpn0-bonding-tmp2.conf > ./cfg/vpn0-bonding-tmp3.conf
+        sudo sed -e "s/§remoteport2/$mlvpn_port2/g" ./cfg/vpn0-bonding-tmp3.conf > ./cfg/vpn0-bonding-tmp4.conf
+        sudo sed -e "s/§remotehost/$mlvpn_host/g" ./cfg/vpn0-bonding-tmp4.conf > ./cfg/vpn0-bonding-tmp5.conf
+        sudo mv ./cfg/vpn0-bonding-tmp5.conf ./cfg/vpn0-bonding.conf
         sudo chmod 700 ./cfg/vpn0-bonding.conf
 
         # 3.

@@ -14,14 +14,14 @@ loss_tolerence = 10
 [filters]
 
 [sim1]
-bindhost = ip_sim1 
-remotehost = "18.197.185.20"
-remoteport = remoteport1
+bindhost = §ip_sim1 
+remotehost = §remotehost
+remoteport = §remoteport1
 #bandwidth_upload = 61440
 
 [sim2]
-bindhost = ip_sim2
-remotehost = "18.197.185.20"
-remoteport = remoteport2
+bindhost = §ip_sim2
+remotehost = §remotehost
+remoteport = §remoteport2
 #bandwidth_upload = 61440
 
