@@ -1,0 +1,13 @@
+[Unit]
+Description=SIM 2 connection [for Smart VPN Bonding]
+
+[Service]
+user=root
+ExecStart=/usr/bin/wvdial -C /etc/wvdial_sim2.conf
+Restart=always
+RestartSec=10
+StartLimitInterval=600
+StartLimitBurst=60
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=Smart VPN Bonder 
+After=sim1-connection.service
+
+[Service]
+user=root
+WorkingDirectory=/home/pi/smart-vpn-bonder-client/
+ExecStart=/home/pi/smart-vpn-bonder-client/bonding-monitoring.sh 5
+Restart=always
+RestartSec=5
+StartLimitInterval=600
+StartLimitBurst=120
+
+[Install]
+WantedBy=multi-user.target

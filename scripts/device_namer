@@ -1,0 +1,57 @@
+#!/bin/bash
+
+DEVICE=$1
+USB_ID=`udevadm info -a -n $DEVICE | egrep "\"[0-9]{1}-[0-9]{1}.[0-9]{1}:[0-9]{1}.[0-9]{1}\"" -o`
+TO_SUB=''
+USB_ID=${USB_ID/\"/$TO_SUB} # tolgo i primi doppi apici
+USB_ID=${USB_ID/\"/$TO_SUB} # tolgo i secondi doppi apici
+
+case "$USB_ID" in
+	1-1.1:1.0)
+		UNIT=0
+		echo "asyncmap 0" > /etc/ppp/options.${DEVICE}
+		echo "noauth" >> /etc/ppp/options.${DEVICE}
+		echo "crtscts" >> /etc/ppp/options.${DEVICE}
+		echo "lock" >> /etc/ppp/options.${DEVICE}
+		echo "hide-password" >> /etc/ppp/options.${DEVICE}
+		echo "modem" >> /etc/ppp/options.${DEVICE}
+		echo "lcp-echo-interval 30" >> /etc/ppp/options.${DEVICE}
+		echo "lcp-echo-failure 4" >> /etc/ppp/options.${DEVICE}
+		echo "noipx" >> /etc/ppp/options.${DEVICE}
+        # forzo il nome a ppp1 in quanto sono sulla prima USB
+		echo "unit $UNIT" >> /etc/ppp/options.${DEVICE}
+	
+		symlink='ttyusb0'
+	;;
+	1-1.1:1.1)
+		symlink='ttyusb1'
+	;;
+	1-1.2:1.0)
+		# ATTENZIONE: il codice relativo alla scrittura del file options.ttyUSBX potrebbe essere spostato
+		# tra i vari case in funzione di come il Sistema Operativo associa il vari device alle loro funzioni
+		# scrivo il file /etc/ppp/options.ttyUSBX
+		UNIT=1
+		echo "asyncmap 0" > /etc/ppp/options.${DEVICE}
+		echo "noauth" >> /etc/ppp/options.${DEVICE}
+		echo "crtscts" >> /etc/ppp/options.${DEVICE}
+		echo "lock" >> /etc/ppp/options.${DEVICE}
+		echo "hide-password" >> /etc/ppp/options.${DEVICE}
+		echo "modem" >> /etc/ppp/options.${DEVICE}
+		echo "lcp-echo-interval 30" >> /etc/ppp/options.${DEVICE}
+		echo "lcp-echo-failure 4" >> /etc/ppp/options.${DEVICE}
+		echo "noipx" >> /etc/ppp/options.${DEVICE}
+        # forzo il nome a ppp2 in quanto sono sulla seconda USB
+		echo "unit $UNIT" >> /etc/ppp/options.${DEVICE}
+	
+		symlink='ttyusb2'
+	;;
+	1-1.2:1.1)
+		symlink='ttyusb3'
+	;;
+	*)
+		symlink='errore'
+	;;
+esac
+	
+
+echo $symlink

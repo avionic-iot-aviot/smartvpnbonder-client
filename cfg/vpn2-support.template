@@ -1,0 +1,20 @@
+[general]
+statuscommand = "/home/pi/smart-vpn-bonder-client/scripts/vpn2-support.sh"
+tuntap = "tun"
+mode = "client"
+interface_name = "mlvpn2"
+timeout = 5
+#control_bind_host = "192.168.179.157"
+#control_bind_port = "8090"
+password = "ciao"
+reorder_buffer_size = 0 # disabled
+loss_tolerence = 100  #disabled
+#cleartext_data=1
+
+[filters]
+
+[sim2]
+bindhost = ip_sim1 
+remotehost = "52.59.217.158"
+remoteport = 5083
+#bandwidth_upload = 61440

@@ -1,0 +1,8 @@
+---------------------------
+Configurazione wvdial
+--------------------------
+
+1. copiare i file .conf (per la SIM1 e la SIM2) in /etc
+2. provare ad avviare wvdial, avendo cura di configurare opportunamente la direttiva APN nel file
+   di configurazione:
+   # wvdial -c /etc/wvdial_simX.conf 

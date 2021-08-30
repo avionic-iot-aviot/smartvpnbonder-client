@@ -1,0 +1,15 @@
+[Unit]
+Description=KPI SIM Monitor
+After=smart-vpn-bonder.service
+
+[Service]
+user=root
+WorkingDirectory=/home/pi/smart-vpn-bonder-client/scripts/
+ExecStart=/home/pi/smart-vpn-bonder-client/scripts/kpi-estimations.sh ppp0 ppp1 8.8.8.8 bouygues.iperf.fr 10 
+Restart=always
+RestartSec=5
+StartLimitInterval=600
+StartLimitBurst=120
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,36 @@
+------------------------------------
+Configurazione udev
+-----------------------------------
+
+Introduzione
+------------
+
+Si e' reso necessario modificare il comportamento del demone udev all'inserimento di 
+un nuovo dongle 3G/4G per rendere indipendente la configurazione di 'wvial' (quindi PPP)
+dalla porta USB utilizzata per collegare il dongle 3G/4G.
+
+
+
+Installazione
+-------------
+1. Copiare il file '99-huawei-link.rules' in /lib/udev/rules.d/
+2. Modificare la variabile 'PROGRAM' presente in '99-huawei-link.rules' in modo tale
+   da puntare correttamente all'eseguibile device_namer presente nella directory del progetto
+   smart-vpn-bonder (default: scripts/device_namer). NOTA: il file di configurazione fornito
+   e' valido solo per Raspberry 4.
+3. Effettare il reload della configurazione 'udev':
+   # sudo udevadm control --reload-rules
+4. Provare a collegare il dongle 3G/4G, dovrebbe compare il device virtuale /dev/ttyusbX in 
+   funzione della porta in cui e' stato collegato
+
+
+Mappatura porte USB -> device ttyusbX -> pppY
+---------------------------------------------
+
+Il Raspberry 4 e' corredato di 4 porte USB. Le porte valide per il dongle 3G/4G sono SOLO
+le USB3.0. Le porte USB sono cosi' mappate:
+ - PORTA USB3.0 superiore -> ttyusb0 -> ppp0
+ - PORTA USB3.0 inferiore -> ttyusb2 -> ppp1
+
+Il valori generati devono corrispondere con quelli impostati nei file di configurazione di 'wvdial'.
+ 
