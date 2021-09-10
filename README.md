@@ -1,3 +1,12 @@
+### Note
+
+Per far sì che mlvpn funzioni, occorre prima inizializzare le tabelle di routing sim1 e sim2, mediante lo script "scripts/set_rtables.sh". Tale script va lanciato una volta sola, in fase di configurazione.
+
+Occorre modificare i permessi di "scripts/vpn0-bonding.sh" (chmod 700), altrimenti mlvpn non eseguirà lo script (segnala un warning).
+
+Preferibilmente installare lo smartvpn bonder client in "/home/pi/smart-vpn-bonder-client", in modo da non dover modificare i riferimenti nei file di configurazione e negli script.
+
+
 # Configurazione servizi `systemd`
 
 Nella cartella `systemd-scripts` sono presenti i servizi `systemd` che dovranno essere eseguiti al boot. In particolare:
