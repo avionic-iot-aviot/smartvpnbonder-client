@@ -14,7 +14,9 @@ Nella cartella `systemd-scripts` sono presenti i servizi `systemd` che dovranno 
  - `smart-vpn-bonder.service`: avvia e controlla la corretta esecuzione del servizio `MLVPN`;
  - `kpi-monitoring.service`: avvia lo script che periodicamente analizza le KPI delle connessioni SIM;
 
- Nei paragrafi successivi viene dettagliata la configurazione e il funzionamento di ciascun servizio, evidenziando le dipendenze con altri moduli software.
+Per attivarli, basta copiarli all'interno della cartella /etc/systemd/system (vanno infatti eseguiti come root).
+
+Nei paragrafi successivi viene dettagliata la configurazione e il funzionamento di ciascun servizio, evidenziando le dipendenze con altri moduli software.
 
  ## configurazione udev per renaming device USB [dongle 3G/4G]
 
