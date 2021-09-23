@@ -87,3 +87,12 @@ Copiare `systemd/kpi-monitor.service` in `/lib/systemd/system/` e assicurarsi ch
 
  Nota: il servizio viene avviato dopo che `smart-vpn-bonder.service` è attivo.
 
+### Modificare le interfacce di rete
+
+Di default, lo smartvpn bonder client utilizza le interfacce di rete ppp0 e ppp1 (che sarebbero le 2 SIM del dongle).
+
+Se si vuole utilizzare delle interacce di rete differenti, è necessario fare alcune modifiche:
+
+1. Editare "./bonding-monitoring.sh". Nelle righe 7 e 8, sostituire ppp0 e ppp1 con le interfacce desiderate.
+2. Editare "systemd-scripts/kpi-monitor.service". Nella riga 8, sostituire ppp0 e ppp1 con le interfacce desiderate. Nota: è necessario copiare nuovamente il file in "/etc/systemd/system/".
+3. Editare "scripts/source_routing.sh". Effettuare le sostituzioni. Cambiare i default route con quelli corretti (è possibile ottenerli mediante il comando "ip route").
