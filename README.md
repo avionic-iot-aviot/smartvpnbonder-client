@@ -96,3 +96,25 @@ Se si vuole utilizzare delle interacce di rete differenti, è necessario fare al
 1. Editare "./bonding-monitoring.sh". Nelle righe 7 e 8, sostituire ppp0 e ppp1 con le interfacce desiderate.
 2. Editare "systemd-scripts/kpi-monitor.service". Nella riga 8, sostituire ppp0 e ppp1 con le interfacce desiderate. Nota: è necessario copiare nuovamente il file in "/etc/systemd/system/".
 3. Editare "scripts/source_routing.sh". Effettuare le sostituzioni. Cambiare i default route con quelli corretti (è possibile ottenerli mediante il comando "ip route").
+
+### Attivare / disattivare MLVPN
+
+## Attivare
+
+```
+sudo systemctl enable sim1-connection.service
+sudo systemctl enable sim2-connection.service
+sudo systemctl enable smart-vpn-bonder.service
+sudo systemctl enable kpi-monitor.service
+sudo reboot
+```
+
+## Disattivare
+
+```
+sudo systemctl enable sim1-connection.service
+sudo systemctl enable sim2-connection.service
+sudo systemctl disable smart-vpn-bonder.service
+sudo systemctl disable kpi-monitor.service
+sudo reboot  # in alternativa è possibile killare manualmente i servizi rimasti in esecuzione
+```
