@@ -97,7 +97,7 @@ Modificare il file ~/drone.cfg:
 
  `$ nano ~/drone.cfg`
 
-Copia e incolla questi parametri (supposto che il tenant sia "agri"):
+Copia e incolla questi parametri variando opportunamente i parametri "mlvpn_port1", "mlvpn_port2" e "mlvpn_ip" (supposto che il tenant sia "agri"):
 
  ```
  community_aviot='agri'
@@ -112,6 +112,12 @@ Copia e incolla questi parametri (supposto che il tenant sia "agri"):
  mlvpn_port2='30032'
  mlvpn_ip='172.16.40.1'
  ```
+ Ad ogni mlvpn_ip corrispondono due mlvpn_port secondo la seguente logica:
+ - 172.16.40.1 -> 30031, 30032
+ - 172.16.40.2 -> 30033, 30034
+ - 172.16.40.3 -> 30035, 30036
+ - 172.16.40.4 -> 30037, 30038
+ - 172.16.40.5 -> 30039, 30030 
 
 Di default, lo smartvpn bonder client utilizza le interfacce di rete ppp0 e ppp1 (che sarebbero le 2 SIM del dongle).
 
