@@ -87,7 +87,31 @@ Copiare `systemd/kpi-monitor.service` in `/lib/systemd/system/` e assicurarsi ch
 
  Nota: il servizio viene avviato dopo che `smart-vpn-bonder.service` è attivo.
 
-### Modificare le interfacce di rete
+### Attivare MLVPN a partire da un RaspberryPi con l'immagine "img-1-3.gz"
+
+Installare iperf:
+
+ `$ sudo apt install iperf`
+
+Modificare il file ~/drone.cfg:
+
+ `$ nano ~/drone.cfg`
+
+Copia e incolla questi parametri (supposto che il tenant sia "agri"):
+
+ ```
+ community_aviot='agri'
+ aviotkey='agri'
+ supernode_ip='18.188.136.98'
+ supernode_port='7654'
+ dhcp_server_ip_on_n2n='10.11.0.1'
+ janus_ip='janus-aviot'
+ enable_mlvpn='true' 
+ mlvpn_host='mlvpn.agri.aviot.it'
+ mlvpn_port1='30031'
+ mlvpn_port2='30032'
+ mlvpn_ip='172.16.40.1'
+ ```
 
 Di default, lo smartvpn bonder client utilizza le interfacce di rete ppp0 e ppp1 (che sarebbero le 2 SIM del dongle).
 
